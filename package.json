@@ -1,0 +1,9 @@
+{
+  "name": "Sample_Survey2",
+  "description": "Express Application implementing socket.io on a form",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.13.0",
+    "socket.io": "^1.3.5"
+  }
+}
