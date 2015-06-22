@@ -31,11 +31,13 @@ io.sockets.on('connection', function (socket) {
   console.log('Socket ID:',socket.id);
   //all the socket code goes in here!
  socket.on("form_submit", function (data){
-    //console.log('The OS is: ' + data.browse + data.os);
+  luckynumber = Math.floor(Math.random() * (1001 - 1)) + 1;
+
     socket.emit('random_number', {browse: data.browse, 
                                     os: data.os,
                                     lang: data.lang,
-                                    comment: data.comment});
+                                    comment: data.comment,
+                                	luckynumb: luckynumber});
 })
 
 

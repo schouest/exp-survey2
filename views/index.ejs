@@ -11,6 +11,10 @@
     #result{
         display: none;
     }
+    button{
+        width: 200px;
+        height: 40px;
+    }
 	</style>
 	<title>Survey Form</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -39,6 +43,7 @@ $(document).ready(function (){
             "<li>Web Browser: " + data.browse + "</li>"+
             "<li>Favorite Language: "+ data.lang +"</li>"+
             "<li>Comments: "+ data.comment + "</li>"+
+            "<li>Lucky Number: " + data.luckynumb + "</li>"+
         "</ul>");
              
     });
