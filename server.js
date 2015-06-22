@@ -28,12 +28,14 @@ var io = require('socket.io').listen(server);
 
 // When a connection event happens (connection event is built in) run the following code
 io.sockets.on('connection', function (socket) {
-  console.log("WE ARE USING SOCKETS!");
-  console.log(socket.id);
+  console.log('Socket ID:',socket.id);
   //all the socket code goes in here!
- socket.on("button_clicked", function (data){
-    console.log('Someone clicked a button!  Reason: ' + data.reason);
-    socket.emit('server_response', {response: "sockets are the best!"});
+ socket.on("form_submit", function (data){
+    //console.log('The OS is: ' + data.browse + data.os);
+    socket.emit('random_number', {browse: data.browse, 
+                                    os: data.os,
+                                    lang: data.lang,
+                                    comment: data.comment});
 })
 
 

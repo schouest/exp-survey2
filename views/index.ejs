@@ -17,22 +17,30 @@ $(document).ready(function (){
     // this triggers the connection event in our server!
     var socket = io.connect();
     // we'll write all the socket stuff after the above line!
-    $('button').click(function (){
-        socket.emit("button_clicked", {reason: "because I want to learn about sockets!"});
+   /* $('button').click(function (){
+        socket.emit("button_clicked", {reason: "because I want to learn about sockets!"});//TODO:
+    });*/
+    
+    $('#target').submit(function(event) {
+        socket.emit('form_submit', {browse: $('#browser').val(), 
+                                    os: $('#os').val(),
+                                    lang: $('#favlang').val(),
+                                    comment: $('#comment').val()});
     });
-    socket.on('server_response', function (data){
-        console.log('The server says: ' + data.response);
+
+    socket.on('random_number', function (data){
+        console.log(data.os + data.browse + data.lang + data.comment);
     });
-            })
+
+})
     </script>
 </head>
 <body>
     <h2>Insert Info Here</h2>
-    <form>
-    	<label>Operating System: </label><label><input type='radio' name='os' value='OSX'>OSX</label><label><input type='radio' name='os' value='Windows'>Windows</label><label><input type='radio' name='os' value='iOS'>iOS</label><label><input type='radio' name='os' value='Android'>Android</label>
-    		<label><input type='radio' name='os' value='' checked='checked'>other:<input type='text' name='other_os'/></label><br>
+    <form id='target'>
+    	<label>Operating System: <input type='text' id='os' required></label><br>
     	
-    	<label>Web Browser: <select name='browser'>
+    	<label>Web Browser: <select id='browser'>
     		<option value="Internet Explorer">Internet Explorer</option>
     		<option value="Safari">Safari</option>
     		<option value="Chrome">Chrome</option>
@@ -40,9 +48,11 @@ $(document).ready(function (){
     		<option value="Opera">Opera</option>
     		<option value="Other">Other</option>
     	  	</select></label><br>
-    	<label>Favorite Language: <input type='text' name='favlang' required></label><br>
-    	<label>Comments: <textarea name='comment' cols='90' rows='7'></textarea></label><br>
-    	<button type='submit' value='submit'>Submit</button>
+    	<label>Favorite Language: <input type='text' id='favlang' required></label><br>
+    	<label>Comments: <textarea id='comment' cols='90' rows='7'></textarea></label><br>
+    	
+
+        <button type='submit' value='submit'>Submit</button>
     </form>
 </body>
 </html>
